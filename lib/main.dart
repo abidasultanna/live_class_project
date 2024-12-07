@@ -1,71 +1,152 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
+
+// Image(asset, network), Column, Row
+
 void main() {
-  runApp( MyApp());
+  runApp(HelloWorldApp());
 }
 
-class MyApp extends StatelessWidget {
-
-
-  // This widget is the root of your application.
+class HelloWorldApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-          backgroundColor: Colors.cyan,
-          appBar: AppBar(
-            title: Text('Home'),
-            centerTitle: true,
-            backgroundColor: Color(0xFFBBDEFB),
-          ),
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Image.asset(
-                  'assets/blueberry.jpg',
-                  height: 200,
-                  width: 360,
-                  alignment: Alignment.center
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  foregroundColor: Colors.blueAccent,
-                  shadowColor: Colors.black,
-                  elevation: 8,
+      debugShowCheckedModeBanner: true,
+      title: 'Hello World App',
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatelessWidget {
+  const Home({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home'),
+        backgroundColor: Colors.green,
+      ),
+      body: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(height: 100),
+
+            // ----------Elevated Button-----------
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+                foregroundColor: Colors.white,
+                textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+                padding: EdgeInsets.symmetric(horizontal: 48, vertical: 16),
+                shadowColor: Colors.amber,
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4),
+                  // side: BorderSide(color: Colors.green, width: 4)
                 ),
-                onPressed: (){
-                  print('Tapped on Elevated Button');
-                },
-                child: Text('Blueberry Cake'),
+                side: BorderSide(color: Colors.green, width: 4),
+                minimumSize: Size(100, 40),
+                // maximumSize: Size(300, 100),
               ),
-              Image.asset(
-                  'assets/oreo.jpg',
-                  height: 200,
-                  width: 360,
-                  alignment: Alignment.center
+              onPressed: () {
+
+                //--------showDialog----------
+                showDialog(
+                  barrierColor: Colors.green,
+                  barrierDismissible: false,
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text('Delete'),
+                      content: Text('Are you sure?'),
+                      actions: [
+                        TextButton(onPressed: () {}, child: Text('No')),
+                        TextButton(onPressed: () {}, child: Text('Yes')),
+                      ],
+                    );
+                  },
+                );
+              },
+              child: Text('Tap'),
+            ),
+            SizedBox(height: 16),
+
+            //---------TextButton------------
+            TextButton(
+              style: TextButton.styleFrom(),
+              onPressed: () {
+                print('Tapped text button');
+              },
+              child: Text('Tap here'),
+            ),
+            SizedBox(height: 16),
+
+            //--------IconButton---------
+            IconButton(
+              style: IconButton.styleFrom(),
+              onPressed: () {
+                print('Tapped text button');
+              },
+              icon: Icon(Icons.add),
+            ),
+            SizedBox(height: 16),
+
+            //--------OutlineButton---------
+            OutlinedButton(
+              style: OutlinedButton.styleFrom(),
+              onPressed: () {
+                print('Tapped text button');
+              },
+              child: Text('Click here'),
+            ),
+            SizedBox(height: 16),
+
+            //---------GestureDetectory---------
+            GestureDetector(
+              onTap: () {
+                print('Just one click');
+              },
+              onDoubleTap: () {
+                print('Double tapped');
+              },
+              onLongPress: () {
+                print('On long press');
+              },
+              onLongPressCancel: () {
+                print('On long press cancel');
+              },
+              onLongPressEnd: (details) {
+                print('On long press end');
+              },
+              child: Column(
+                children: [
+                  Text('Simple Text'),
+                  Text('Simple Text'),
+                  Text('Simple Text'),
+                  Text('Simple Text'),
+                ],
               ),
-              Text('Oreo Cake',
-                selectionColor: Colors.purple,
-                style:TextStyle(
-                  fontSize: 20 ,
-                ),
-              ),
-              Image.asset(
-                  'assets/pink.jpg',
-                  height: 200,
-                  width: 360,
-                  alignment: Alignment.center
-              ),
-              Text('Pink Cake',
-                selectionColor: Colors.purple,
-                style:TextStyle(
-                  fontSize: 20 ,
-                ),
-              ),
-            ],
-          )
+            ),
+            InkWell(
+              splashColor: Colors.green,
+              onTap: () {
+                print('Ink well');
+              },
+              child: Text('Behave like button'),
+            )
+          ],
+        ),
+      ),
+
+
+      //-----------floatingActionButton-------
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
       ),
     );
   }
