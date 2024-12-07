@@ -13,19 +13,62 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.cyan,
-        appBar: AppBar(
-          title: Text('Home'),
-          backgroundColor: Color(0xFFBBDEFB),
-        ),
-        body: Center(
-          child: Text('Hello world', style: TextStyle(
-            fontSize: 20, fontWeight: FontWeight.bold,
+          backgroundColor: Colors.cyan,
+          appBar: AppBar(
+            title: Text('Home'),
+            centerTitle: true,
+            backgroundColor: Color(0xFFBBDEFB),
           ),
-          ),
-        ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Image.asset(
+                  'assets/blueberry.jpg',
+                  height: 200,
+                  width: 360,
+                  alignment: Alignment.center
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.blueAccent,
+                  shadowColor: Colors.black,
+                  elevation: 8,
+                ),
+                onPressed: (){
+                  print('Tapped on Elevated Button');
+                },
+                child: Text('Blueberry Cake'),
+              ),
+              Image.asset(
+                  'assets/oreo.jpg',
+                  height: 200,
+                  width: 360,
+                  alignment: Alignment.center
+              ),
+              Text('Oreo Cake',
+                selectionColor: Colors.purple,
+                style:TextStyle(
+                  fontSize: 20 ,
+                ),
+              ),
+              Image.asset(
+                  'assets/pink.jpg',
+                  height: 200,
+                  width: 360,
+                  alignment: Alignment.center
+              ),
+              Text('Pink Cake',
+                selectionColor: Colors.purple,
+                style:TextStyle(
+                  fontSize: 20 ,
+                ),
+              ),
+            ],
+          )
       ),
     );
   }
 }
+
 
